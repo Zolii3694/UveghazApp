@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UveghazSzenzorok;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace UveghazApp
 {
-
     internal class Uveghaz
     {
         public class Meresek
@@ -87,6 +88,12 @@ namespace UveghazApp
             {
                 Console.WriteLine("Alacsony talajnedvesseg -> Ontozes bekapcsolva!");
             }
+        }
+        public void MentsJson()
+        {
+            string json = JsonConvert.SerializeObject(meresek, Formatting.Indented);
+            File.WriteAllText("meresek.json", json);
+            Console.WriteLine("JSON file-ba mentes megtortent: meresek.json");
         }
     }
 }
