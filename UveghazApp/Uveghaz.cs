@@ -22,6 +22,7 @@ namespace UveghazApp
         private HomersekletSzenzor homerseklet;
         private ParatartalomSzenzor paratartalom;
         private TalajNedvesseg talaj;
+        private AdatbazisKezelo db = new AdatbazisKezelo();
 
         public Uveghaz()
         {
@@ -31,17 +32,19 @@ namespace UveghazApp
             homerseklet.ErtekValtozas += KezeldHomersekletet;
             paratartalom.ErtekValtozas += KezeldParatartalmat;
             talaj.ErtekValtozas += KezeldTalajnedvesseget;
-
+            
         }
 
         private void KezeldHomersekletet(object sender, double ertek)
         {
-            meresek.Add(new Meresek
+            var ujMeres = new Meresek
             {
                 Nev = "Hőmérséklet",
                 Ertek = ertek,
                 Time = DateTime.Now
-            });
+            };
+            meresek.Add(ujMeres);
+            db.Ment(ujMeres);
 
             if (ertek < 18)
             {
@@ -55,12 +58,15 @@ namespace UveghazApp
         }
         private void KezeldParatartalmat(object sender, double ertek)
         {
-            meresek.Add(new Meresek
+            var ujMeres = new Meresek
             {
                 Nev = "Páratartalom",
                 Ertek = ertek,
                 Time = DateTime.Now
-            });
+            };
+
+            meresek.Add(ujMeres);
+            db.Ment(ujMeres);
 
             if (ertek > 75)
             {
@@ -73,12 +79,15 @@ namespace UveghazApp
         }
         private void KezeldTalajnedvesseget(object sender, double ertek)
         {
-            meresek.Add(new Meresek
+            var ujMeres = new Meresek
             {
                 Nev = "Talaj nedvesség",
                 Ertek = ertek,
                 Time = DateTime.Now
-            });
+            };
+
+            meresek.Add(ujMeres);
+            db.Ment(ujMeres);
 
             if (ertek > 100)
             {
