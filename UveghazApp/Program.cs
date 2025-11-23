@@ -37,6 +37,8 @@ namespace UveghazApp
             }
 
             Console.WriteLine("\nTeszt lefutott.");
+
+            Console.ReadKey(true);
         }
     }
 }
