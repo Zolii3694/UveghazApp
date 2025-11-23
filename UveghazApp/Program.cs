@@ -11,8 +11,6 @@ namespace UveghazApp
     {
         static void Main(string[] args)
         {
-            var h = new HomersekletSzenzor();
-            
 
         }
     }
