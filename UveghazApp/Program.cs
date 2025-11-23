@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UveghazSzenzorok;
 
 namespace UveghazApp
 {
@@ -10,6 +11,9 @@ namespace UveghazApp
     {
         static void Main(string[] args)
         {
+            var h = new HomersekletSzenzor();
+            
+
         }
     }
 }
