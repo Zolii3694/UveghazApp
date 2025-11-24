@@ -11,18 +11,13 @@ namespace UveghazApp
 {
     internal class Uveghaz
     {
-        public class Meresek
-        {
-            public string Nev { get; set; }
-            public double Ertek { get; set; }
-            public DateTime Time { get; set; }
-
-        }
-        private List<Meresek> meresek = new List<Meresek>();
+   
+        private List<MeresBlokk> meresek = new List<MeresBlokk>();
         private HomersekletSzenzor homerseklet;
         private ParatartalomSzenzor paratartalom;
         private TalajNedvesseg talaj;
         private AdatbazisKezelo db = new AdatbazisKezelo();
+
 
         public Uveghaz()
         {
@@ -37,15 +32,6 @@ namespace UveghazApp
 
         private void KezeldHomersekletet(object sender, double ertek)
         {
-            var ujMeres = new Meresek
-            {
-                Nev = "Hőmérséklet",
-                Ertek = ertek,
-                Time = DateTime.Now
-            };
-            meresek.Add(ujMeres);
-            db.Ment(ujMeres);
-
             if (ertek < 18)
             {
                 Console.WriteLine("Hideg van -> Futes bekapcsolva!");
@@ -58,16 +44,6 @@ namespace UveghazApp
         }
         private void KezeldParatartalmat(object sender, double ertek)
         {
-            var ujMeres = new Meresek
-            {
-                Nev = "Páratartalom",
-                Ertek = ertek,
-                Time = DateTime.Now
-            };
-
-            meresek.Add(ujMeres);
-            db.Ment(ujMeres);
-
             if (ertek > 75)
             {
                 Console.WriteLine("Magas paratartalom -> Szelloztetes bekapcsolva!");
@@ -79,21 +55,11 @@ namespace UveghazApp
         }
         private void KezeldTalajnedvesseget(object sender, double ertek)
         {
-            var ujMeres = new Meresek
-            {
-                Nev = "Talaj nedvesség",
-                Ertek = ertek,
-                Time = DateTime.Now
-            };
-
-            meresek.Add(ujMeres);
-            db.Ment(ujMeres);
-
-            if (ertek > 100)
+            if (ertek > 70)
             {
                 Console.WriteLine("Magas talajnedvesseg -> Ontozes kikapcsolva!");
             }
-            else if (ertek < 15)
+            else if (ertek < 35)
             {
                 Console.WriteLine("Alacsony talajnedvesseg -> Ontozes bekapcsolva!");
             }
@@ -104,5 +70,28 @@ namespace UveghazApp
             File.WriteAllText("meresek.json", json);
             Console.WriteLine("JSON file-ba mentes megtortent: meresek.json");
         }
+        public void HomersekletOlvas() => homerseklet.ErtekOlvasas();
+        public void ParatartalomOlvas() => paratartalom.ErtekOlvasas();
+        public void TalajOlvas() => talaj.ErtekOlvasas();
+        public MeresBlokk MeresiCiklus()
+        {
+            var h = homerseklet.ErtekOlvasasCsendben();
+            var p = paratartalom.ErtekOlvasasCsendben();
+            var t = talaj.ErtekOlvasasCsendben();
+
+            var blokk = new MeresBlokk
+            {
+                Time = DateTime.Now,
+                Homerseklet = h,
+                Paratartalom = p,
+                Talaj = t
+            };
+
+            meresek.Add(blokk);
+            db.Ment(blokk);
+
+            return blokk;
+        }
     }
+
 }

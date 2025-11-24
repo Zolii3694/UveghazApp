@@ -25,18 +25,28 @@ namespace UveghazApp
 
             talaj.ErtekValtozas += (s, ertek) =>
                 Console.WriteLine($"Talajnedvesség: {ertek:F2} %");
-
+            Uveghaz uveghaz = new Uveghaz();
             // TESZT: 10 mérési ciklus objektumszinten
+            Console.WriteLine("Teszteles:\n");
             for (int i = 0; i < 10; i++)
             {
                 homero.ErtekOlvasas();   // generál + event
+                uveghaz.HomersekletOlvas();
                 para.ErtekOlvasas();     // generál + event
+                uveghaz.ParatartalomOlvas();
                 talaj.ErtekOlvasas();    // generál + event
+                uveghaz.TalajOlvas();
+                Console.WriteLine();
 
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(100);
             }
+            // JSON mentés
+            uveghaz.MentsJson();
 
-            Console.WriteLine("\nTeszt lefutott.");
+            Console.WriteLine("\nTeszt lefutott.\n");
+            var blokk = uveghaz.MeresiCiklus();
+            Console.WriteLine("\nDB mentes OK.");
+       
 
             Console.ReadKey(true);
         }

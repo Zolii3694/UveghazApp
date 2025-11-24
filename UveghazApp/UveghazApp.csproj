@@ -65,7 +65,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="UveghazSzenzor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\UveghazSzenzor.dll</HintPath>
+      <HintPath>..\..\UveghazSzenzor\UveghazSzenzor\bin\Debug\UveghazSzenzor.dll</HintPath>
     </Reference>
     <Reference Include="UveghazSzenzorok">
       <HintPath>bin\UveghazSzenzorok.dll</HintPath>
@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdatbazisKezelo.cs" />
+    <Compile Include="MeresBlokk.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Uveghaz.cs" />

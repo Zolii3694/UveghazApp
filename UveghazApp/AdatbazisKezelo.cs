@@ -20,9 +20,10 @@ namespace UveghazApp
                 string createTable =
                 @"CREATE TABLE IF NOT EXISTS Meresek(
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Nev TEXT,
-                    Ertek REAL,
-                    Time TEXT
+                    Time TEXT,
+                    Homerseklet REAL,
+                    Paratartalom REAL,
+                    Talaj REAL
                 );";
 
                 using (var cmd = new SQLiteCommand(createTable, connection))
@@ -31,18 +32,21 @@ namespace UveghazApp
                 }
             }
         }
-        public void Ment(Uveghaz.Meresek meres)
+        public void Ment(MeresBlokk m)
         {
             using(var connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                string insert = "INSERT INTO Meresek (Nev, Ertek, Time) VALUES(@nev, @ertek, @time);";
+                string insert =
+                           "INSERT INTO Meresek (Time, Homerseklet, Paratartalom, Talaj) " +
+                           "VALUES (@time, @hom, @par, @talaj);";
 
-                using (var cmd = new SQLiteCommand(insert, connection)) 
+                using (var cmd = new SQLiteCommand(insert, connection))
                 {
-                    cmd.Parameters.AddWithValue("@nev", meres.Nev);
-                    cmd.Parameters.AddWithValue("@ertek", meres.Ertek);
-                    cmd.Parameters.AddWithValue("@time",meres.Time.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@time", m.Time.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@hom", m.Homerseklet);
+                    cmd.Parameters.AddWithValue("@par", m.Paratartalom);
+                    cmd.Parameters.AddWithValue("@talaj", m.Talaj);
 
                     cmd.ExecuteNonQuery();
                 }
