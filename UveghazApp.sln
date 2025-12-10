@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UveghazApp", "UveghazApp\UveghazApp.csproj", "{79A07287-2E83-4558-B899-C350ADDC0A4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UveghazSzenzor", "..\UveghazSzenzor\UveghazSzenzor\UveghazSzenzor.csproj", "{DE9083D0-2809-44D2-8D42-69DE00878CF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{79A07287-2E83-4558-B899-C350ADDC0A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79A07287-2E83-4558-B899-C350ADDC0A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79A07287-2E83-4558-B899-C350ADDC0A4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE9083D0-2809-44D2-8D42-69DE00878CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE9083D0-2809-44D2-8D42-69DE00878CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE9083D0-2809-44D2-8D42-69DE00878CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE9083D0-2809-44D2-8D42-69DE00878CF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

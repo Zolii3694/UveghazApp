@@ -92,6 +92,11 @@ namespace UveghazApp
 
             return blokk;
         }
+        public List<MeresBlokk> GetMeresek()
+        {
+            return meresek;
+        }
+
     }
 
 }

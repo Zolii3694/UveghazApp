@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UveghazSzenzorok;
+using static UveghazSzenzorok.TalajNedvesseg;
 
 namespace UveghazApp
 {
@@ -46,7 +47,11 @@ namespace UveghazApp
             Console.WriteLine("\nTeszt lefutott.\n");
             var blokk = uveghaz.MeresiCiklus();
             Console.WriteLine("\nDB mentes OK.");
-       
+
+            Console.WriteLine("\nLINQ LEKÉRDEZÉSEK:");
+            var lista = uveghaz.GetMeresek();
+            Linq_Lekerdezes.Lefuttat(lista);
+
 
             Console.ReadKey(true);
         }
